@@ -4,6 +4,10 @@ import './App.css';
 function App() {
 
     const [name, setName] = useState("");
+    const [age, setAge] = useState(0);
+    const [country, setCountry] = useState("");
+    const [position, setPosition] = useState("");
+    const [wage, setWage] = useState(0);
 
   return (
       <div className="App">
