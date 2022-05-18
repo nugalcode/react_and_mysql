@@ -13,7 +13,7 @@ function App() {
               <label>Position </label>
               <input type="text" />
               <label>Wage </label>
-              <input type="number"/>
+              <input type="number" />
           </div>
       </div >
   );
