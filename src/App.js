@@ -1,6 +1,10 @@
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+
+    const [name, setName] = useState("");
+
   return (
       <div className="App">
           <div className="information">
@@ -14,6 +18,7 @@ function App() {
               <input type="text" />
               <label>Wage </label>
               <input type="number" />
+              <button> Add Employee </button>
           </div>
       </div >
   );
