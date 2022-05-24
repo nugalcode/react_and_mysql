@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
+const cors = require('cors')
+
+app.use(cors());
+app.use(express.json());
 
 // database that holds our employee information
 const db = mysql.createConnection({
@@ -11,6 +15,7 @@ const db = mysql.createConnection({
 })
 
 app.post('/create', (req, res) => {
+    console.log(req.body);
     const name = req.body.name;
     const age = req.body.age;
     const country = req.body.country;
