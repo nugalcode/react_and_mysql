@@ -19,7 +19,7 @@ html, body, #root {
     width: 100%;
 }
 
-.information input {
+input {
     width: 300px;
     height: 50px;
     font-size: 20px;

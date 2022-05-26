@@ -10,6 +10,8 @@ function App() {
     const [position, setPosition] = useState("");
     const [wage, setWage] = useState(0);
 
+    const [newWage, setNewWage] = useState(0);
+
     const [employeeList, setEmployeeList] = useState([]);
 
     // send the user input to our server endpoint using Axios library
@@ -45,6 +47,23 @@ function App() {
             })
     }
 
+    const updateEmployeeWage = (id) => {
+        Axios.put('http://localhost:3001/update', { wage: newWage, id: id })
+            .then((response) => {
+                setEmployeeList(employeeList.map((val) => {
+                    return val.id === id ? { ...val, wage: newWage } : val;
+                }))
+            })
+    }
+
+    const deleteEmployee = (id) => {
+        Axios.delete(`http://localhost:3001/delete/${id}`)
+            .then((response) => {
+                setEmployeeList(employeeList.filter((val) => {
+                    return val.id !== id;
+                }))
+            })
+    }
     return (
         <div className="App">
             <div className="information">
@@ -66,11 +85,21 @@ function App() {
                 {employeeList.map((employee, index) => {
                     return (
                         <div className="employee" key={employee.id}>
-                            <h3> Name: {employee.name}</h3>
-                            <h3> Age: {employee.age}</h3>
-                            <h3> Country: {employee.country}</h3>
-                            <h3> Position: {employee.position}</h3>
-                            <h3> Wage: {employee.wage}</h3>
+                            <div> 
+                                <h3> Name: {employee.name}</h3>
+                                <h3> Age: {employee.age}</h3>
+                                <h3> Country: {employee.country}</h3>
+                                <h3> Position: {employee.position}</h3>
+                                <h3> Wage: {employee.wage}</h3>
+                            </div>
+                            <div>
+                                <input type="text"
+                                    placeholder="new wage"
+                                    onChange={(e) => setNewWage(e.target.value)}
+                                />
+                                <button onClick={() => updateEmployeeWage(employee.id)}> Update </button>
+                                <button onClick={() => deleteEmployee(employee.id)}> Delete </button>
+                            </div>
                         </div>
                     )
 
